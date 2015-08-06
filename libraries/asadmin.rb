@@ -87,7 +87,11 @@ class Chef
     end
 
     def self.asadmin_script(node)
-      "#{node['glassfish']['install_dir']}/glassfish/bin/asadmin"
+      if node['platform'] == 'windows'
+        "#{node['glassfish']['install_dir']}/glassfish/bin/asadmin.bat"
+      else
+        "#{node['glassfish']['install_dir']}/glassfish/bin/asadmin"
+      end
     end
   end
 end
